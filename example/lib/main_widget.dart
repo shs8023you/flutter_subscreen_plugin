@@ -8,7 +8,7 @@ import 'package:flutter_subscreen_plugin/flutter_subscreen_plugin.dart';
 
 ///主屏widget
 class MainApp extends StatefulWidget {
-  const MainApp({Key key}) : super(key: key);
+  const MainApp({Key? key}) : super(key: key);
 
   @override
   _MainAppState createState() => _MainAppState();
@@ -87,7 +87,7 @@ class _MainAppState extends State<MainApp> {
           params: {"num": randomData},
         );
       } else {
-        _messangerKey.currentState.showSnackBar(
+        _messangerKey.currentState?.showSnackBar(
           const SnackBar(
             content: Text('未查询到可用副屏'),
           ),

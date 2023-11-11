@@ -4,7 +4,7 @@ import 'package:flutter_subscreen_plugin/flutter_subscreen_plugin.dart';
 
 ///副屏widget
 class SubApp extends StatefulWidget {
-  const SubApp({Key key}) : super(key: key);
+  const SubApp({Key? key}) : super(key: key);
 
   @override
   _SubAppState createState() => _SubAppState();
