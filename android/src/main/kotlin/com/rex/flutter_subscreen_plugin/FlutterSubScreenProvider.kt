@@ -43,7 +43,7 @@ class FlutterSubScreenProvider private constructor() {
     private val mMediaRouterCallback: SimpleCallback = object : SimpleCallback() {
         @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
         override fun onRouteSelected(router: MediaRouter?, type: Int, info: MediaRouter.RouteInfo) {
-            ///发现可用的扩展屏
+            // 发现可用的扩展屏
             showSubDisplay()
         }
 
@@ -53,7 +53,7 @@ class FlutterSubScreenProvider private constructor() {
             type: Int,
             info: MediaRouter.RouteInfo
         ) {
-            ///无可用扩展屏幕
+            // 无可用扩展屏幕
             closeSubDisplay()
         }
 
@@ -62,7 +62,7 @@ class FlutterSubScreenProvider private constructor() {
             router: MediaRouter?,
             info: MediaRouter.RouteInfo
         ) {
-            ///可用扩展屏幕发生变更
+            // 可用扩展屏幕发生变更
             showSubDisplay()
         }
     }

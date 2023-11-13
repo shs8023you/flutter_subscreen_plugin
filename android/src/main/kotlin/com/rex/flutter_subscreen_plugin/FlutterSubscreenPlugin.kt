@@ -25,17 +25,17 @@ class FlutterSubscreenPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
     companion object {
         private const val mainChannelName = "screen_plugin_main_channel"
         private const val subChannelName = "screen_plugin_sub_channel"
-        //用于设置副屏 flutterEngine 需要引入的三方插件库
+        // 用于设置副屏 flutterEngine 需要引入的三方插件库
         var tripPlugins: ArrayList<FlutterPlugin>? = null
-        //主屏路由
+        // 主屏路由
         const val mainRouter = "main"
-        //副屏路由
+        // 副屏路由
         const val subMainRouter = "subMain"
     }
 
     private fun onCreateViceChannel(dartExecutor: DartExecutor) {
         subChannel = MethodChannel(dartExecutor, subChannelName)
-        //将副屏事件中转给主屏的engine
+        // 将副屏事件中转给主屏的engine
         subChannel.setMethodCallHandler { call, _ ->
             mainChannel.invokeMethod(call.method, call.arguments)
         }
@@ -89,10 +89,10 @@ class FlutterSubscreenPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-        //your plugin is now attached to an Activity
+        // your plugin is now attached to an Activity
         FlutterSubScreenProvider.instance.setFlutterSubCallback(object : IFlutterSubCallback {
             override fun onSubFlutterEngineCreated() {
-                //副屏 engine 初始化后，将副屏事件进行分发
+                // 副屏 engine 初始化后，将副屏事件进行分发
                 FlutterSubScreenProvider.instance.flutterEngine?.let { engine ->
                     onCreateViceChannel(engine.dartExecutor)
                 }
@@ -104,20 +104,20 @@ class FlutterSubscreenPlugin : FlutterPlugin, ActivityAware, MethodCallHandler {
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
-        //the Activity your plugin was attached to was
+        // the Activity your plugin was attached to was
         // destroyed to change configuration.
         // This call will be followed by onReattachedToActivityForConfigChanges().
-        //暂无处理
+        // 暂无处理
     }
 
     override fun onReattachedToActivityForConfigChanges(p0: ActivityPluginBinding) {
-        //your plugin is now attached to a new Activity
+        // your plugin is now attached to a new Activity
         // after a configuration change.
-        //暂无处理
+        // 暂无处理
     }
 
     override fun onDetachedFromActivity() {
-        //your plugin is no longer associated with an Activity.
+        // your plugin is no longer associated with an Activity.
         FlutterSubScreenProvider.instance.onDispose()
     }
 }
