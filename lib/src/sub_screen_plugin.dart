@@ -15,14 +15,12 @@ abstract class SubScreenPlugin {
   // ignore: close_sinks
   static StreamController<MethodCall>? _mainStreamController;
 
-  static MethodChannel _mainChannel = MethodChannel(_mainChannelName)
-    ..setMethodCallHandler(_onMainChannelMethodHandler);
+  static MethodChannel _mainChannel = MethodChannel(_mainChannelName)..setMethodCallHandler(_onMainChannelMethodHandler);
   static MethodChannel? _subChannel;
 
   static Stream<MethodCall> get viceStream {
     if (_subChannel == null) {
-      _subChannel = MethodChannel(_subChannelName)
-        ..setMethodCallHandler(_onSubChannelMethodHandler);
+      _subChannel = MethodChannel(_subChannelName)..setMethodCallHandler(_onSubChannelMethodHandler);
     }
     if (_subStreamController == null) {
       _subStreamController = StreamController<MethodCall>.broadcast();
@@ -75,7 +73,7 @@ abstract class SubScreenPlugin {
   ///给主屏幕调用，发送事件体给副屏
   static Future<void> sendMsgToViceScreen(
     String method, {
-    Map<String, dynamic>? params,
+    dynamic params,
   }) async {
     await _mainChannel.invokeMethod(method, params ?? {});
   }
@@ -83,7 +81,7 @@ abstract class SubScreenPlugin {
   ///给副屏幕调用，发送事件体给主屏
   static Future<void> sendMsgToMainScreen(
     String method, {
-    Map<String, dynamic>? params,
+    dynamic params,
   }) async {
     await _subChannel?.invokeMethod(method, params ?? {});
   }
