@@ -75,7 +75,7 @@ abstract class SubScreenPlugin {
     String method, {
     dynamic params,
   }) async {
-    await _mainChannel.invokeMethod(method, params ?? {});
+    await _mainChannel.invokeMethod(method, params);
   }
 
   ///给副屏幕调用，发送事件体给主屏
@@ -83,6 +83,6 @@ abstract class SubScreenPlugin {
     String method, {
     dynamic params,
   }) async {
-    await _subChannel?.invokeMethod(method, params ?? {});
+    await _subChannel?.invokeMethod(method, params);
   }
 }
