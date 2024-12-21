@@ -14,3 +14,6 @@ android/.idea/jarRepositories.xml
 android/.idea/misc.xml
 android/.idea/modules.xml
 android/.idea/vcs.xml
+
+# FVM Version Cache
+.fvm/
